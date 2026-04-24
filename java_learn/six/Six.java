@@ -1,10 +1,14 @@
 package java_learn.six;
 
+import java_learn.seven.MethodLearning;
+
 //? once the string is created it's immutable 
 public class Six {
 
     static final int x = 10; // this is a constant variable, it cannot be changed
     public static void main(String[] args) {
+        MethodLearning methodLearning = new MethodLearning();
+        methodLearning.publicMethod(); // this is allowed
         String str1 = "Hello"; // create string literal
         String str2 = "Hello"; // reuse string literal from string pool
         String str3 = new String("Hello"); // create new string object
