@@ -38,3 +38,15 @@ if object can surview indpedently then it's called strong aggregation
 if object depent on another and we delete parent then it automatically delelte child it's called the weak composition
 
 
+
+deque
+
+List
+arraylist
+linkedlist
+double linked list
+
+
+hashmap
+linkedhashmap
+
