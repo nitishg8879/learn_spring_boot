@@ -50,3 +50,11 @@ double linked list
 hashmap
 linkedhashmap
 
+deamon thread
+something which is running async using parallel
+user thread and deamon thread
+whatever we create normally that's called user thread
+if want to make the thread deaom then we have to set 
+main thread is consider as user thread
+
+
