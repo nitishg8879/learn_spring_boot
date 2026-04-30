@@ -14,6 +14,9 @@ public class TestThread {
             }
             System.out.println("Thread 1 name: " + Thread.currentThread().getName());
         });
+
+        MyThreadCustom myThreadCustom = new MyThreadCustom();
+        
         
 
         Thread thread2 = new Thread(() -> {
@@ -39,5 +42,25 @@ public class TestThread {
         }
 
         System.out.println("Both threads have finished execution.");
+
+        myThreadCustom.start();
     }
 }
+
+
+class MyThreadCustom extends Thread {
+    @Override
+    public void run() {
+        for (int i = 0; i < 2; i++) {
+            System.out.println("MyThreadCustom: " + i);
+            try {
+                Thread.sleep(1200); // Sleep for 1.2 seconds
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println("MyThreadCustom name: " + Thread.currentThread().getName());
+    }
+}
+
+
