@@ -7,7 +7,13 @@ public interface CreatingInterfacePerson {
     void sleep();
 }
 
+class BC{
+    int ac = 45;
+}
+
 class CreatingINterfaceStudent extends MethodLearning implements CreatingInterfacePerson {
+
+    private static final int a = 10;
     @Override
     protected void protectedMethod() {
         super.protectedMethod();
@@ -19,6 +25,10 @@ class CreatingINterfaceStudent extends MethodLearning implements CreatingInterfa
     
     @Override
     public void eat() {
+        BC df = new BC(){
+            
+        };
+        int as = df.ac;
         System.out.println("Student is eating");
     }
 

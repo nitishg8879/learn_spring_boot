@@ -38,3 +38,104 @@ if object can surview indpedently then it's called strong aggregation
 if object depent on another and we delete parent then it automatically delelte child it's called the weak composition
 
 
+
+Java 8
+
+* Interface
+  a. Default methods introduced, so implementing classes do not need to implement every method if default implementation is provided
+  b. Static methods introduced in interfaces
+  c. Static methods cannot be overridden
+
+* Collection
+  a. Java Streams API
+  b. forEach()
+  c. removeIf()
+  d. Spliterator
+
+* Functional Programming
+  a. Lambda Expressions
+  b. Functional Interface
+  c. Method Reference
+  d. Optional class
+
+* Date & Time API
+  a. LocalDate
+  b. LocalTime
+  c. LocalDateTime
+  d. New java.time package
+
+---
+
+Java 9
+
+* Interface
+  a. Private methods introduced in interfaces
+  b. Used for code reusability inside default and static methods
+
+* Collection
+  a. List.of()
+  b. Set.of()
+  c. Map.of()
+
+* Other
+  a. JShell introduced
+  b. Module System introduced using module-info.java
+
+---
+
+Java 10
+
+* Local Variable
+  a. var keyword introduced for local variable type inference
+
+---
+
+Java 11
+
+* String
+  a. isBlank()
+  b. lines()
+  c. strip()
+  d. repeat()
+
+* File Handling
+  a. readString()
+  b. writeString()
+
+* Lambda
+  a. var allowed in lambda parameters
+
+---
+
+Java 14
+
+* Switch
+  a. Switch expressions introduced
+  b. Cleaner and shorter switch syntax
+
+---
+
+Java 15
+
+* String
+  a. Text Blocks introduced for multiline strings
+
+---
+
+Java 16
+
+* instanceof
+  a. Pattern matching introduced
+  b. No need for separate type casting
+
+---
+
+Java 17
+
+* OOP
+  a. Sealed Classes introduced
+  b. Control which classes can inherit another class
+   
+
+
+
