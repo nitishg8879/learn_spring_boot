@@ -8,7 +8,7 @@ import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
 
 @Component
-@Aspect
+// @Aspect
 public class MyAOPTestFile {
 
     @Before("execution(* com.AOP.aopTest.controllers.AopTestController.beforeTest(..))")
