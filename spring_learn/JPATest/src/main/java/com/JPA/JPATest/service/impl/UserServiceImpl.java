@@ -2,11 +2,23 @@ package com.JPA.JPATest.service.impl;
 
 import com.JPA.JPATest.dto.UserDTO;
 import com.JPA.JPATest.entity.User;
+import com.JPA.JPATest.entity.UserDetails;
 import com.JPA.JPATest.repository.UserRepository;
 import com.JPA.JPATest.service.UserService;
+import com.JPA.JPATest.service.UserSpecification;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
+
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 import java.util.stream.Collectors;
 
 @Service
@@ -62,6 +74,31 @@ public class UserServiceImpl implements UserService {
     }
 
     private User toEntity(UserDTO dto) {
-        return new User(null, dto.getName(), dto.getEmail(), dto.getPhone());
+        return new User(null, dto.getName(), dto.getEmail(), dto.getPhone(),null);
+    }
+
+    EntityManager entityManager;
+
+
+    void searchUser(String name){
+        CriteriaBuilder cb =  entityManager.getCriteriaBuilder();
+        // what columns should be there
+        CriteriaQuery<UserDetails> crQuery = cb.createQuery(UserDetails.class);
+        // from table
+        Root<UserDetails> user =  crQuery.from(UserDetails.class);
+        // select * from user
+        crQuery.select(user);
+
+        Predicate predicate =  cb.equal(user.get("name"), name);
+        crQuery.where(predicate);
+        TypedQuery<UserDetails> typedQuery =  entityManager.createQuery(crQuery);
+        List<UserDetails> output =  typedQuery.getResultList();
+
+    }
+
+    void searchUserUsingSpecification(){
+        Specification<UserDetails> result = Specification
+        .where(UserSpecification.equalsPhone("null"))
+        .and(null);
     }
 }
