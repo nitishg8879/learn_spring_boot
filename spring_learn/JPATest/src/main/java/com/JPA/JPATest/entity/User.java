@@ -26,4 +26,12 @@ public class User {
     private String email;
 
     private String phone;
+
+    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    // @JoinColumn(name = "company_id",referencedColumnName = "id")
+    @JoinColumns({
+        @JoinColumn(name = "name_id",referencedColumnName = "name"),
+        @JoinColumn(name = "address_id",referencedColumnName = "address")
+    })
+    Company company;
 }

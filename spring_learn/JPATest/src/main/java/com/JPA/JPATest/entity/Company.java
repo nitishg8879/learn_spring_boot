@@ -1,16 +1,27 @@
 package com.JPA.JPATest.entity;
 
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.IdClass;
+import jakarta.persistence.OneToOne;
 
 @Entity
-@Table(name = "companies", schema = "jpa_test")
+// @IdClass(CompanyCK.class)
 public class Company {
-    @Id
-    @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
-    Integer id;
-    
-    String name;
+
+    // @Id
+    // private String name;
+
+    // @Id
+    // private String address;
+
+    @EmbeddedId
+    CompanyCK id;
+
+
+    @OneToOne(mappedBy = "company")
+    User user;
+
+
 }
