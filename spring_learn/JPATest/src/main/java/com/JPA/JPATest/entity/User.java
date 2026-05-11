@@ -8,7 +8,7 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 @Entity
-@Table(name = "users")
+@Table(name = "users",schema = "jpa_test")
 @Cache(usage = CacheConcurrencyStrategy.READ_ONLY, region = "com.JPA.JPATest.entity.User")
 @Data
 @NoArgsConstructor
