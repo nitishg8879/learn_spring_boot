@@ -1,7 +1,14 @@
+import java.util.HashMap;
+import java.util.Map;
+
 public class TryCatchFinally {
     public static void main(String[] args) {
-        System.out.println("Return value from returnValue1: " + returnValue1());
-        System.out.println("Return value from returnValue2: " + returnValue2());
+        // Map<String,Integer> map = new HashMap<String,Integer>();
+        // map.put("one", 1);
+        // map.put("two", "Two");
+        // System.out.println(map);
+        // System.out.println("Return value from returnValue1: " + returnValue1());
+        // System.out.println("Return value from returnValue2: " + returnValue2());
     }
 
     static int returnValue1() {

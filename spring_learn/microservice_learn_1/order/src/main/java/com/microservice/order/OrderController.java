@@ -4,17 +4,30 @@ import java.io.BufferedReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestClient;
+import org.springframework.web.client.RestTemplate;
 
 @RestController
 @RequestMapping("/orders")
+
 public class OrderController {
 
-    @GetMapping("/{id}")
+    @Autowired
+    private RestTemplate restTemplate;
+
+    @Autowired
+    private RestClient restClient;
+
+    @Autowired
+    private ProductClient productClient;
+
+    @GetMapping("/legacyWay/{id}")
     public ResponseEntity<String> getOrder(@PathVariable String id) {
         HttpURLConnection httpURLConnection = null;
         try {
@@ -47,6 +60,29 @@ public class OrderController {
                 httpURLConnection.disconnect();
             }
         }
+    }
+
+    @GetMapping("/usingRestTemplate/{id}")
+    public String usingRestTemplate(@PathVariable String id) {
+        // restTemplate.getForEntity(id, null, null)// gives full req,res data
+        return restTemplate.getForObject("http://localhost:8082/products/" + id, String.class);// return only body data
+    }
+
+    @GetMapping("/usingRestClient/{id}")
+    public String usingRestClient(@PathVariable String id) {
+        return restClient.get()
+                .uri("http://localhost:8082/products/" + id)
+                .retrieve()
+                .onStatus(t -> {
+                    System.out.println("Error status code: ");
+                    return true;
+                })
+                .body(String.class);
+    }
+
+    @GetMapping("/usingFeignClient/{id}")
+    public String getMethodName(@PathVariable String id) {
+        return productClient.getProductByID(id);
     }
 
 }
