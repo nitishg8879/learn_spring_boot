@@ -1,0 +1,54 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-MyEurekaServerApplication<myEurekaServer>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.societyManagement.myEurekaServer.MyEurekaServerApplication",
+            "projectName": "myEurekaServer",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-SocietyApplication<society>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.societyManagement.society.SocietyApplication",
+            "projectName": "society",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-MembersApplication<members>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.societyManagement.members.MembersApplication",
+            "projectName": "members",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-AuthApplication<auth>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.societyManagement.auth.AuthApplication",
+            "projectName": "auth",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ApiGatewayApplication<ApiGateway>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.societyManagement.ApiGateway.ApiGatewayApplication",
+            "projectName": "ApiGateway",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
