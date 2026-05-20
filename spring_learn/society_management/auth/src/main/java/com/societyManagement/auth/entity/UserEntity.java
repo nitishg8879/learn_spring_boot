@@ -1,4 +1,4 @@
-package com.societyManagement.auth;
+package com.societyManagement.auth.entity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,12 +15,16 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Builder
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserEntity implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,4 +43,10 @@ public class UserEntity implements UserDetails {
         SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + role);
         return Arrays.asList(authority);
     }
+
+    @Override
+    public String getUsername() {
+        return username;
+    }
+
 }

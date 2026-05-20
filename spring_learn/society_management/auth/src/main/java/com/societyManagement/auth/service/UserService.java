@@ -1,15 +1,22 @@
-package com.societyManagement.auth;
+package com.societyManagement.auth.service;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.societyManagement.auth.entity.UserEntity;
+import com.societyManagement.auth.repo.UserRepository;
+
 import lombok.AllArgsConstructor;
+import com.society.common.service.JwtService;
 
 @Service
 @AllArgsConstructor
 public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final JwtService jwtService;
 
     @Override
     public UserEntity loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -17,10 +24,10 @@ public class UserService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
     }
 
-    String createUser(String username, String password, String email, String role) {
+    public String createUser(String username, String password, String email, String role) {
         UserEntity user = UserEntity.builder()
                 .username(username)
-                .password(password)
+                .password(passwordEncoder.encode(password))
                 .email(email)
                 .role(role)
                 .build();
@@ -28,9 +35,12 @@ public class UserService implements UserDetailsService {
         return "User created successfully";
     }
 
-    String login(String username, String password) {
-        
-        return "Login successful";
+    public String login(String username, String password) {
+        UserEntity user = loadUserByUsername(username);
+        if (!passwordEncoder.matches(password, user.getPassword())) {
+            throw new RuntimeException("Invalid username or password");
+        }
+        return jwtService.generateToken(user.getUsername());
     }
 
 }
