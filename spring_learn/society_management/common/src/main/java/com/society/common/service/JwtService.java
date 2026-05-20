@@ -16,14 +16,25 @@ import io.jsonwebtoken.security.Keys;
 public class JwtService {
     private String secretKey = "2dsfd3232333EKDWNFJNKEJWdsafdsfsdfnlskdnfkdsnlkfnsldknflksndflsdknflksdnflksdnflknsdlknflksdnfBNGJKBSJKGBJKSBF";
 
-    public String generateToken(String username) {
+    public String generateToken(String username, String role) {
         return Jwts.builder()
                 .setSubject(username)
+                .claim("role", role)
+                .claim(username, role)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(
                         new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24)) // 24 hours
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                 .compact();
+    }
+
+    public boolean validateToken(String token, String username) {
+        final String extractedUsername = extractUsername(token);
+        return (extractedUsername.equals(username));
+    }
+
+    public String extractRole(String token) {
+        return extractClaim(token, claims -> claims.get("role", String.class));
     }
 
     public <T> T extractClaim(

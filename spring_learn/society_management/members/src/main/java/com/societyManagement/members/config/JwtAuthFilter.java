@@ -1,11 +1,16 @@
 package com.societyManagement.members.config;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.societyManagement.members.service.JwtService;
+import com.society.common.service.JwtService;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -26,6 +31,23 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
+
+        String token = authHeader.substring(7);
+        String username = jwtService.extractUsername(token);
+
+        if (jwtService.validateToken(token, username)) {
+            String role = jwtService.extractRole(token);
+
+            List<SimpleGrantedAuthority> authorities = List.of("ROLE_" + role).stream()
+                    .map(SimpleGrantedAuthority::new)
+                    .collect(Collectors.toList());
+            UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(
+                    username,
+                    null,
+                    authorities);
+            SecurityContextHolder.getContext().setAuthentication(auth);
+        }
+        filterChain.doFilter(request, response);
     }
 
 }

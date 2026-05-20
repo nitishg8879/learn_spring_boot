@@ -7,11 +7,18 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.society.common.service.JwtService;
+
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Configuration
 public class AppConfig {
+
+    @Bean
+    JwtService jwtService() {
+        return new JwtService();
+    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
