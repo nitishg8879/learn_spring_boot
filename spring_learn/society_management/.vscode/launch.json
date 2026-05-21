@@ -8,7 +8,8 @@
             "mainClass": "com.societyManagement.myEurekaServer.MyEurekaServerApplication",
             "projectName": "myEurekaServer",
             "args": "",
-            "envFile": "${workspaceFolder}/.env"
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=64045 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=myEurekaServer"
         },
         {
             "type": "java",
@@ -28,7 +29,8 @@
             "mainClass": "com.societyManagement.members.MembersApplication",
             "projectName": "members",
             "args": "",
-            "envFile": "${workspaceFolder}/.env"
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=60004 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=members"
         },
         {
             "type": "java",
@@ -47,6 +49,17 @@
             "cwd": "${workspaceFolder}",
             "mainClass": "com.societyManagement.ApiGateway.ApiGatewayApplication",
             "projectName": "ApiGateway",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=64034 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=ApiGateway"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-CommonApplication<common>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.society.common.CommonApplication",
+            "projectName": "common",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
         }
